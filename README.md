@@ -18,4 +18,8 @@ src/data_sets - csv files with every data_set in system
 src/models - pickle files, there are stored prepared models, which will be used to get recommendations  
 
 src/prepare_model.py - script for preparing models (uses prepare_model function of picked algorithm), parameters: algorithm_filename, data_set_filename  
-src/recommender_utils.py - script with functions which uses django app, most important is function recommend - for getting recommendations (uses recommend function of picked algorithm), parameters: algorithm_filename, data_set_filename, user_id
+src/recommender_utils.py - script with functions which uses django app, most important is function recommend - for getting recommendations (uses recommend function of picked algorithm), parameters: algorithm_filename, data_set_filename, user_id  
+  
+## This repository uses:  
+Cornac framework https://github.com/PreferredAI/cornac - implementation of Bayesian Personalized Ranking  
+Microsoft recommenders https://github.com/microsoft/recommenders - implementation of Simple Algorithm for Recommendation and adaptation of Bayesian Personalized Ranking by cornac

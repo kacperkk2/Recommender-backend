@@ -545,11 +545,6 @@ def mrr_at_k(
 
     df_merge = pd.merge(df_hit_sorted, df_hit_count, on=col_user)
 
-    # for user in df_merge['UserId'].unique():
-    #     print(df_merge[df_merge['UserId'] == user])
-    #     print(df_hit[df_hit['UserId'] == user])
-    #     print()
-
     return (df_merge["rr"]).sum() / n_users
 
 

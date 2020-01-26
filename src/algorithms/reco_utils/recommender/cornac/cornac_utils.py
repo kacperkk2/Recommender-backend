@@ -4,7 +4,7 @@
 import pandas as pd
 import numpy as np
 
-from reco_utils.common.constants import (
+from src.algorithms.reco_utils.common.constants import (
     DEFAULT_USER_COL,
     DEFAULT_ITEM_COL,
     DEFAULT_PREDICTION_COL,
@@ -48,6 +48,7 @@ def predict_rating(
 def predict_ranking(
         model,
         data,
+        user_id,
         usercol=DEFAULT_USER_COL,
         itemcol=DEFAULT_ITEM_COL,
         predcol=DEFAULT_PREDICTION_COL,
@@ -68,11 +69,13 @@ def predict_ranking(
     """
     users, items, preds = [], [], []
     item = list(model.train_set.iid_map.keys())
-    for uid, user_idx in model.train_set.uid_map.items():
-        user = [uid] * len(item)
-        users.extend(user)
-        items.extend(item)
-        preds.extend(model.score(user_idx).tolist())
+    uid = user_id
+    user_idx = model.train_set.uid_map[uid]
+    # for uid, user_idx in model.train_set.uid_map.items():
+    user = [uid] * len(item)
+    users.extend(user)
+    items.extend(item)
+    preds.extend(model.score(user_idx).tolist())
 
     all_predictions = pd.DataFrame(data={usercol: users, itemcol: items, predcol: preds})
 

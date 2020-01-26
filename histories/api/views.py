@@ -8,10 +8,10 @@ from src.recommender_utils import user_history
 class HistoriesView(APIView):
 
     def get(self, request, *args, **kw):
-        data = request.GET.get('data', None)
+        data_set = request.GET.get('data_set', None)
         user_id = int(request.GET.get('user_id', None))
 
-        payload = user_history(data, user_id)
+        payload = user_history(data_set, user_id)
 
         serializer = HistoryElementSerializer(payload, many=True)
         response = Response(serializer.data, status=status.HTTP_200_OK)

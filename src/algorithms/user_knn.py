@@ -34,7 +34,8 @@ class UserKNN(object):
         self.n_items = self.binary_user_item.shape[1]
         self.n_users = self.binary_user_item.shape[0]
 
-        return self.neighborhood_size, self.path_id_map, self.id_path_map, self.binary_user_item, self.n_items, self.n_users, self.dataset
+        return self.neighborhood_size, self.path_id_map, self.id_path_map, self.binary_user_item, \
+               self.n_items, self.n_users, self.dataset
 
     def _items_count_per_user(self):
         if not hasattr(self, '__items_count_per_user'):

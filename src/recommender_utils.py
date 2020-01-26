@@ -27,7 +27,11 @@ def recommend(algorithm_name, data_set, user_id, top_k):
 
 
 def get_data_set_info(data_set, number_of_ids):
-    data = pd.read_csv(f"{os.path.dirname(os.path.abspath(__file__))}/data_sets/{data_set}.txt", sep=";", names=[COL_USER, COL_ITEM, COL_RATING, COL_TIMESTAMP])
+    data = pd.read_csv(
+        f"{os.path.dirname(os.path.abspath(__file__))}/data_sets/{data_set}.txt",
+        sep=";",
+        names=[COL_USER, COL_ITEM, COL_RATING, COL_TIMESTAMP]
+    )
     data_set_info = dict()
     data_set_info['users_num'] = data[COL_USER].nunique()
     data_set_info['items_num'] = data[COL_ITEM].nunique()
@@ -38,7 +42,11 @@ def get_data_set_info(data_set, number_of_ids):
 
 
 def user_history(data_set, user_id):
-    data = pd.read_csv(f"{os.path.dirname(os.path.abspath(__file__))}/data_sets/{data_set}.txt", sep=";", names=[COL_USER, COL_ITEM, COL_RATING, COL_TIMESTAMP])
+    data = pd.read_csv(
+        f"{os.path.dirname(os.path.abspath(__file__))}/data_sets/{data_set}.txt",
+        sep=";",
+        names=[COL_USER, COL_ITEM, COL_RATING, COL_TIMESTAMP]
+    )
     history_df = data[data[COL_USER] == user_id][[COL_ITEM, COL_TIMESTAMP]]
     history_df.sort_values(COL_TIMESTAMP, inplace=True, ascending=False)
     history_item_timestamp_list = list(history_df.itertuples(index=False, name=None))
@@ -60,9 +68,3 @@ def get_data_sets_names():
                  if isfile(join(join(dirname(__file__), 'data_sets'), f))]
     data_sets = [f[:-len(".txt")] for f in data_sets if f.endswith(".txt")]
     return data_sets
-
-
-# if __name__ == '__main__':
-#     # print(recommend("sar", "u100_p110", 10))
-#     print(user_history("u100_p110", 10))
-#     print(users_id_list("u100_p110"))

@@ -22,6 +22,7 @@ class DataSetListView(ListAPIView):
 
                     DataSet.objects.create(
                         name=data_set,
+                        short=data_set,
                         users_id_sample=data_set_info['users_id_sample'],
                         users_num=data_set_info['users_num'],
                         items_num=data_set_info['items_num'],

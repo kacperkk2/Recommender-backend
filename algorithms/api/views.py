@@ -19,7 +19,8 @@ class AlgorithmListView(ListAPIView):
                     Algorithm.objects.create(
                         name=algorithm,
                         short=algorithm,
-                        description=""
+                        description="",
+                        link=""
                     )
             self.queryset = Algorithm.objects.filter(short__in=algorithms)
 

@@ -8,7 +8,7 @@ class MostPopular(object):
 
     def prepare_model(self, available_data):
         self.available_data = available_data
-        self.popularity = dict()  # sciezka: ile razy ja przeszli
+        self.popularity = dict()  # map: route -> how many times it has been visited
 
         for user_id in available_data[COL_USER].unique():
             one_user_seq = available_data[available_data[COL_USER] == user_id][COL_ITEM].tolist()

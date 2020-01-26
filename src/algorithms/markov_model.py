@@ -10,7 +10,7 @@ class MarkovModel(object):
 
     def prepare_model(self, available_data):
         self.available_data = available_data.groupby(COL_USER)[COL_ITEM].apply(list).to_dict()
-        self.sequence = dict()  # sciezka: {sciezka po niej: liczba takich wystapien, inna sciezka po niej: liczba wystapien}
+        self.sequence = dict()  # map: route -> {route after route from key: how many times, ...}
 
         for user_id, one_user_seq in self.available_data.items():
             for i in range(len(one_user_seq) - 1):
@@ -32,7 +32,7 @@ class MarkovModel(object):
         user_seq = self.available_data[user_id]
         last_item = user_seq[-1]
 
-        following_paths = self.sequence[last_item]  # slownik ze wszystkimi sciezkami ktore wystepowaly po niej wraz z liczbami takich zajsc
+        following_paths = self.sequence[last_item]  # get dict with every route after last_item route
 
         ranking_list = [item_occurences[0] for item_occurences in
                         sorted(following_paths.items(), key=lambda item: item[1], reverse=True)]

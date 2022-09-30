@@ -6,7 +6,7 @@ django-cors-headers==3.2.0
 djangorestframework==3.10.3
 execnet==1.7.1
 gunicorn==20.0.4
-joblib==0.14.1
+joblib==1.2.0
 numpy==1.17.4
 pandas==0.25.3
 python-dateutil==2.8.1
